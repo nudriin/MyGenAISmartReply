@@ -97,6 +97,10 @@ class ChatFragment : Fragment() {
             }
         }
 
+        chatViewModel.smartReplyOptions.observe(viewLifecycleOwner) { options ->
+            replyOptionsAdapter.setReplyOptions(options)
+        }
+
         chatViewModel.errorMessage.observe(viewLifecycleOwner) {
             if (it != null)
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
