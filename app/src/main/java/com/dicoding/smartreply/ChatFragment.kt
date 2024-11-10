@@ -70,6 +70,12 @@ class ChatFragment : Fragment() {
 
         chatViewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
 
+        if(chatViewModel.chatHistory.value == null) {
+            val chatHistory = ArrayList<Message>()
+            chatHistory.add(Message("Hello friend. How are you today?", false, System.currentTimeMillis()))
+            chatViewModel.setMessages(chatHistory)
+        }
+
         chatViewModel.chatHistory.observe(viewLifecycleOwner) { messages ->
             chatAdapter.setChatHistory(messages)
             if (chatAdapter.itemCount > 0) {

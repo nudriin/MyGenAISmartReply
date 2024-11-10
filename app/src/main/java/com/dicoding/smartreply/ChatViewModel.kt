@@ -37,11 +37,13 @@ class ChatViewModel : ViewModel() {
     }
 
     fun switchUser() {
+        clearSmartReplyOptions()
         val value = _pretendingAsAnotherUser.value!!
         _pretendingAsAnotherUser.value = !value
     }
 
     fun setMessages(messages: ArrayList<Message>) {
+        clearSmartReplyOptions()
         _chatHistory.value = messages
     }
 
@@ -51,7 +53,13 @@ class ChatViewModel : ViewModel() {
         var list: ArrayList<Message> = chatHistory.value ?: ArrayList()
         list.add(Message(message, !user, System.currentTimeMillis()))
 
+        clearSmartReplyOptions()
+
         _chatHistory.value = list
+    }
+
+    private fun clearSmartReplyOptions(){
+        _smartReplyOptions.value = ArrayList()
     }
 
     private fun initSmartReplyOptionsGenerator() {
