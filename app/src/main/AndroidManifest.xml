@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Smartreply"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="smart_reply" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
