@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.smartreply.databinding.FragmentChatBinding
+import java.util.Calendar
 
 class ChatFragment : Fragment() {
 
@@ -175,11 +176,32 @@ class ChatFragment : Fragment() {
     }
 
     private fun generateBasicChatHistory() {
+        val chatHistory = ArrayList<Message>()
+        val calendar = Calendar.getInstance()
 
+        calendar.add(Calendar.MINUTE, -10)
+        chatHistory.add(Message("Hello", true, calendar.timeInMillis))
+
+        calendar.add(Calendar.MINUTE, 10)
+        chatHistory.add(Message("Hey", false, calendar.timeInMillis))
+
+        chatViewModel.setMessages(chatHistory)
     }
 
     private fun generateSensitiveChatHistory() {
+        val chatHistory = ArrayList<Message>()
+        val calendar = Calendar.getInstance()
 
+        calendar.add(Calendar.MINUTE, -10)
+        chatHistory.add(Message("Hi", false, calendar.timeInMillis))
+
+        calendar.add(Calendar.MINUTE, 1)
+        chatHistory.add(Message("How are you?", true, calendar.timeInMillis))
+
+        calendar.add(Calendar.MINUTE, 10)
+        chatHistory.add(Message("My cat died", false, calendar.timeInMillis))
+
+        chatViewModel.setMessages(chatHistory)
     }
 
 }
