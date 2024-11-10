@@ -125,6 +125,10 @@ class ChatFragment : Fragment() {
         binding.btnSend.setOnClickListener {
             val input = binding.tietInputTextEditText.text.toString()
             if (input.isNotEmpty()) {
+
+                chatViewModel.addMessage(input)
+                binding.tietInputTextEditText.text?.clear()
+
                 val imm = requireContext().getSystemService(
                     Context.INPUT_METHOD_SERVICE
                 ) as InputMethodManager

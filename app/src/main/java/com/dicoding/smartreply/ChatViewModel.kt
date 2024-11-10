@@ -30,6 +30,15 @@ class ChatViewModel : ViewModel() {
         _chatHistory.value = messages
     }
 
+    fun addMessage(message: String) {
+        val user = _pretendingAsAnotherUser.value!!
+
+        var list: ArrayList<Message> = chatHistory.value ?: ArrayList()
+        list.add(Message(message, !user, System.currentTimeMillis()))
+
+        _chatHistory.value = list
+    }
+
     companion object {
         private const val TAG = "ChatViewModel"
     }
